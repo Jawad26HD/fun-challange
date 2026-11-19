@@ -1,0 +1,62 @@
+project_id = "fun-challange"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[db]
+port = 54322
+shadow_port = 54320
+major_version = 15
+
+[auth]
+enabled = true
+site_url = "http://localhost:8081"
+additional_redirect_urls = ["http://localhost:8081", "studenthub://auth/callback"]
+jwt_expiry = 3600
+enable_signup = true
+enable_anonymous_sign_ins = false
+
+[auth.email]
+enable_signup = false
+enable_confirmations = true
+
+[auth.sms]
+enable_signup = false
+
+[auth.external.azure]
+enabled = true
+client_id = "env(AZURE_CLIENT_ID)"
+secret = "env(AZURE_CLIENT_SECRET)"
+url = "env(AZURE_TENANT_URL)"
+redirect_uri = ""
+
+# Each handler validates its bearer with auth.getUser. Disabling the legacy gateway
+# check supports current asymmetric Supabase JWTs; it does NOT disable handler auth.
+[functions.outlook-connect]
+enabled = true
+verify_jwt = false
+entrypoint = "./functions/outlook-connect/index.ts"
+
+[functions.outlook-status]
+enabled = true
+verify_jwt = false
+entrypoint = "./functions/outlook-status/index.ts"
+
+[functions.outlook-sync]
+enabled = true
+verify_jwt = false
+entrypoint = "./functions/outlook-sync/index.ts"
+
+[functions.outlook-disconnect]
+enabled = true
+verify_jwt = false
+entrypoint = "./functions/outlook-disconnect/index.ts"
+
+[functions.outlook-worker]
+enabled = true
+verify_jwt = false
+entrypoint = "./functions/outlook-worker/index.ts"

@@ -1,0 +1,49 @@
+{
+  "expo": {
+    "name": "Student Hub",
+    "slug": "student-hub",
+    "scheme": "studenthub",
+    "version": "1.0.0",
+    "orientation": "default",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "app.studenthub.planner",
+      "infoPlist": {
+        "CFBundleAllowMixedLocalizations": true,
+        "CFBundleLocalizations": [
+          "en",
+          "ar"
+        ]
+      }
+    },
+    "android": {
+      "package": "app.studenthub.planner"
+    },
+    "web": {
+      "name": "Student Hub",
+      "shortName": "Student Hub",
+      "bundler": "metro",
+      "output": "single",
+      "themeColor": "#176B52"
+    },
+    "plugins": [
+      "expo-secure-store",
+      "expo-notifications",
+      ["expo-localization", { "supportsRTL": true, "supportedLocales": ["en", "ar"] }],
+      "expo-web-browser",
+      "expo-font",
+      ["expo-widgets", {
+        "enableAndroid": true,
+        "groupIdentifier": "group.app.studenthub.planner",
+        "widgets": [{
+          "name": "NextUp",
+          "displayName": "Student Hub",
+          "description": "Next lecture and exam",
+          "ios": { "supportedFamilies": ["systemSmall", "systemMedium"], "initialLayout": "src/widgets/NextUp.ios.tsx" },
+          "android": { "targetCellWidth": 2, "targetCellHeight": 2, "minWidth": 110, "minHeight": 110, "initialLayout": "src/widgets/NextUp.android.tsx" }
+        }]
+      }]
+    ]
+  }
+}
